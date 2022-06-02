@@ -19,6 +19,7 @@ from itertools import combinations
 from sklearn.gaussian_process import GaussianProcessRegressor
 from castle.common import BaseLearner, Tensor
 from castle.common.independence_tests import hsic_test
+import tqdm
 
 
 class GPR(object):
@@ -238,7 +239,7 @@ class ANMNonlinear(BaseLearner):
                                     index=data.columns,
                                     columns=data.columns)
 
-        for i, j in combinations(range(node_num), 2):
+        for i, j in tqdm.tqdm(combinations(range(node_num), 2)):
             x = data[:, i].reshape((-1, 1))
             y = data[:, j].reshape((-1, 1))
 
